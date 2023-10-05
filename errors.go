@@ -9,5 +9,4 @@ func errors() {
 	} else {
 		Printf("Vous avez trouvé une lettre !")
 	}
-	}
-	
+}
