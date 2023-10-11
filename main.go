@@ -3,32 +3,15 @@ package main
 import (
     "fmt"
     "strings"
-    //"math/rand"
+    "math/rand"
+    "time"
 )
 
-// J'essai de faire en sorte que la fonction pioche un mot aléatoire
-// Je vais essayer en utilisant OS 
-// var wordDatabase = []string{ 
-//     "arbre",
-//     "voiture",
-//     "champs",
-//     "coton",
-//     "avions",
-//     "poulet",
-//     "pizza",
-//     "rat",
-//     "informatique",
-//     "challenge",
-// }
-
-// func chooseRandomWord() string {
-//     // Générer un index aléatoire pour choisir un mot
-//     index := rand.Intn(len(wordDatabase))
-//     return wordDatabase[index]
-// }
-
 func main() {
-    wordToGuess := "avions" 
+    rand.Seed(time.Now().UnixNano())
+
+    dico := []string{"AVION", "ARBRE", "CAMIONS", "CHEVEUX", "CAMPING", "CHAUSSURE"}
+    wordToGuess := dico[rand.Intn(len(dico))] // le mot à deviner
     guessedWord := make([]string, len(wordToGuess))
 
     for i := range guessedWord {
@@ -41,7 +24,7 @@ func main() {
     fmt.Println("Welcome to the Hangman game!")
     fmt.Printf("Guess the word: %s\n", strings.Join(guessedWord, " "))
 
-    for attemptsLeft > 0 { // Tant qu'il reste des "vies" au joueurs 
+    for attemptsLeft > 0 { // Tant qu'il reste des "vies" au joueur
         fmt.Printf("Attempts left: %d\n", attemptsLeft)
         fmt.Print("Guessed letters: ")
         fmt.Println(strings.Join(guessedLetters, " "))
@@ -54,6 +37,8 @@ func main() {
             fmt.Println("Please enter a single letter.")
             continue
         }
+
+        guess = strings.ToUpper(guess) // Convertir la lettre en majuscule pour correspondre au mot en majuscule
 
         if strings.Contains(wordToGuess, guess) {
             for i, letter := range wordToGuess {
