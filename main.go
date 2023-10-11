@@ -1,4 +1,4 @@
-package main
+package main // Code du groupe Raphael, Dylan, Lucas 
 
 import (
     "fmt"
@@ -10,7 +10,7 @@ import (
 func main() {
     rand.Seed(time.Now().UnixNano())
 
-    dico := []string{"AVION", "ARBRE", "CAMIONS", "CHEVEUX", "CAMPING", "CHAUSSURE"}
+    dico := []string{"AVION", "ARBRE", "CAMIONS", "CHEVEUX", "CAMPING", "CHAUSSURE"} // tableau de mot a deviner
     wordToGuess := dico[rand.Intn(len(dico))] // le mot à deviner
     guessedWord := make([]string, len(wordToGuess))
 
