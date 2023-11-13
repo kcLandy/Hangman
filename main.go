@@ -1,4 +1,4 @@
-package main // Code du groupe Raphael, Dylan, Lucas 
+package main
 
 import (
     "fmt"
@@ -11,31 +11,30 @@ func main() {
     rand.Seed(time.Now().UnixNano())
 
     ReadFile()
-    wordToFind := ReadFile()[rand.Intn(len(ReadFile()))] 
+    wordToFind := ReadFile()[rand.Intn(len(ReadFile()))] // choisis un mot aléatoire dans le word.txt
     guessedWord := make([]string, len(wordToFind))
 
     for i := range guessedWord {
         guessedWord[i] = "_"
     }
 
-    attemptsLeft := 10
+    attemptsLeft := 9 // nombre d'essaie
     guessedLetters := make([]string, 0)
 
     fmt.Println("Welcome to the Hangman game!")
     fmt.Printf("Guess the word: %s\n", strings.Join(guessedWord, " "))
 
     for attemptsLeft > 0 { 
-        fmt.Printf("Attempts left: %d\n", attemptsLeft)
+        fmt.Printf("Attempts left: %d\n", attemptsLeft) // nous rappelle combien d'essai il nous reste
         fmt.Print("Guessed letters: ")
         fmt.Println(strings.Join(guessedLetters, " "))
 
         var guess string
         fmt.Print("Enter a letter: ")
-        fmt.Scanf("%s", &guess)
+        fmt.Scanf("%s", &guess) // vérifie si la lettre choisie correspond à l'une du mot
 
         if len(guess) != 1 {
-            fmt.Println("just one letter is allowed")
-            continue
+            fmt.Println("just one letter is allowed") // On ne peut donner qu'une lettre a la fois 
         }
 
         guess = strings.ToUpper(guess) 
@@ -49,6 +48,7 @@ func main() {
         } else {
             fmt.Printf("The letter %s is not in the word.\n", guess)
             attemptsLeft--
+            draw_hangman(9 - attemptsLeft)
         }
 
         guessedLetters = append(guessedLetters, guess)
