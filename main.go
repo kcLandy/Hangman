@@ -18,7 +18,7 @@ func main() {
         guessedWord[i] = "_"
     }
 
-    attemptsLeft := 9 // nombre d'essaie
+    attemptsLeft := 9 // nombre d'essais
     guessedLetters := make([]string, 0)
 
     fmt.Println("Welcome to the Hangman game!")
@@ -35,7 +35,8 @@ func main() {
 
         if len(guess) != 1 {
             fmt.Println("just one letter is allowed") // On ne peut donner qu'une lettre a la fois 
-        }
+            continue
+         }
 
         guess = strings.ToUpper(guess) 
 
